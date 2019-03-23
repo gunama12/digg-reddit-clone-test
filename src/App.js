@@ -5,9 +5,9 @@ class Home extends Component {
 	constructor(props){
 		super(props);
 	}
-	handleClick(e, vote) {
+	handleVote(e, vote, index) {
 	    e.preventDefault();
-	    console.log(vote);
+	    this.props.onVote(vote, index);
 	}
 	render(){
 		return (
@@ -17,11 +17,13 @@ class Home extends Component {
 					this.props.topics.map((item,index) => 						
 						<div className="App-topic" key={index}>
 							<div className="App-vote-box">
-								<a href="#" onClick={(e) => this.handleClick(e, "up")}>▲</a>
+								<a href="#" onClick={(e) => this.handleVote(e, "up", index)}>▲</a>
 								<span>{item.vote}</span>
-								<a href="#" onClick={(e) => this.handleClick(e, "down")}><span>▼</span></a>
+								<a href="#" onClick={(e) => this.handleVote(e, "down", index)}><span>▼</span></a>
 							</div>	
-							<p>{item.content}</p>
+							<div className="App-topic-box">
+								<p>{item.content}</p>
+							</div>
 						</div>
 					)
 				}
@@ -36,15 +38,18 @@ class App extends Component {
 		this.state = {
 			topics: [
 				{
-					content: "LLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",
+					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",
 					vote: 0
 				},
 				{
-					content: "LLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",
+					content: "in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
 					vote: 5
 				}
 			]
 		}
+	}
+	handleVote = (vote, index) =>{
+		console.log(vote, index);
 	}
   	render() {
 		return (
@@ -53,7 +58,7 @@ class App extends Component {
 	  				<h1>Digg/Reddit Clone</h1>
 	  				<nav></nav>
 	  			</header>
-	  			<Home topics={this.state.topics}/>
+	  			<Home topics={this.state.topics} onVote={this.handleVote}/>
 		  	</div>
 		);
   	}

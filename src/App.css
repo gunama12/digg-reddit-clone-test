@@ -19,3 +19,6 @@
 .App-vote-box a{
 	text-decoration: none;
 }
+.App-topic-box{
+	flex:1; 
+}
