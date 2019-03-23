@@ -13,22 +13,18 @@ class Home extends Component {
 		return (
 			<div className="App-home">
 				<h3>Topic List</h3>
-				<div className="App-topic">
-					<div className="App-vote-box">
-						<a href="#" onClick={(e) => this.handleClick(e, "up")}>▲</a>
-						<span>8</span>
-						<a href="#" onClick={(e) => this.handleClick(e, "down")}><span>▼</span></a>
-					</div>	
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
-				</div>
-				<div className="App-topic">
-					<div className="App-vote-box">
-						<a href="#" onClick={(e) => this.handleClick(e, "up")}>▲</a>
-						<span>8</span>
-						<a href="#" onClick={(e) => this.handleClick(e, "down")}><span>▼</span></a>
-					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
-				</div>
+				{
+					this.props.topics.map((item,index) => 						
+						<div className="App-topic" key={index}>
+							<div className="App-vote-box">
+								<a href="#" onClick={(e) => this.handleClick(e, "up")}>▲</a>
+								<span>{item.vote}</span>
+								<a href="#" onClick={(e) => this.handleClick(e, "down")}><span>▼</span></a>
+							</div>	
+							<p>{item.content}</p>
+						</div>
+					)
+				}
 			</div>
 		);
 	}
@@ -40,8 +36,12 @@ class App extends Component {
 		this.state = {
 			topics: [
 				{
-					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",
+					content: "LLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",
 					vote: 0
+				},
+				{
+					content: "LLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",
+					vote: 5
 				}
 			]
 		}
@@ -53,7 +53,7 @@ class App extends Component {
 	  				<h1>Digg/Reddit Clone</h1>
 	  				<nav></nav>
 	  			</header>
-	  			<Home/>
+	  			<Home topics={this.state.topics}/>
 		  	</div>
 		);
   	}
