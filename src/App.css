@@ -1,3 +1,21 @@
 .App-header {  
 	text-align: center;
 }
+.App-home {
+	padding: 10px 10px; 
+}
+.App-topic {
+	border: 1px solid grey;
+	margin: 5px 0;
+	display: flex;
+}
+.App-vote-box {
+	width: 100px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+}
+.App-vote-box a{
+	text-decoration: none;
+}
