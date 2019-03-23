@@ -49,7 +49,11 @@ class App extends Component {
 		}
 	}
 	handleVote = (vote, index) =>{
-		console.log(vote, index);
+		let topics = this.state.topics;
+		topics[index].vote = vote === "up" ? (topics[index].vote + 1) : (topics[index].vote - 1);  
+		this.setState({
+			topics: topics
+		})
 	}
   	render() {
 		return (
