@@ -42,7 +42,7 @@ class TopicCreate extends Component {
 	}
 	handleContentChange = (event) => {
 		this.setState({content: event.target.value});
-		if(event.target.value.length < 256 && this.state.error == true){
+		if(event.target.value.length < 256 && this.state.error === true){
 			this.setState({error: false});
 		}
 	}
@@ -51,7 +51,7 @@ class TopicCreate extends Component {
 	    if(this.state.content.length > 255 ){
 			this.setState({error: true});
 		}else{
-			console.log("Validation success");
+			this.props.onSuccess(this.state.content);
 		}
 	}
  	render(){
@@ -91,12 +91,21 @@ class App extends Component {
 			]
 		}
 	}
-	handleVote = (vote, index) =>{
+	handleVote = (vote, index) => {
 		let topics = this.state.topics;
 		topics[index].vote = vote === "up" ? (topics[index].vote + 1) : (topics[index].vote - 1);  
 		this.setState({
 			topics: topics
 		})
+	}
+	handleCreateTopicSuccess = (content) => {
+		let newContent = {
+			content: content,
+			vote: 0
+		};
+		this.setState({
+	    	topics: [...this.state.topics, newContent]
+	    });
 	}
   	render() {
 		return (
@@ -106,7 +115,7 @@ class App extends Component {
 	  				<nav></nav>
 	  			</header>
 	  			<Home topics={this.state.topics} onVote={this.handleVote}/>
-	  			<TopicCreate/>
+	  			<TopicCreate onSuccess={this.handleCreateTopicSuccess}/>
 		  	</div>
 		);
   	}
