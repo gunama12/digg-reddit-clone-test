@@ -36,15 +36,23 @@ class TopicCreate extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			content: ""
+			content: "",
+			error: false
 		}
 	}
 	handleContentChange = (event) => {
 		this.setState({content: event.target.value});
+		if(event.target.value.length < 256 && this.state.error == true){
+			this.setState({error: false});
+		}
 	}
 	handleSubmit = (event) => {
 	    event.preventDefault();
-	    alert('An essay was submitted: ' + this.state.content);
+	    if(this.state.content.length > 255 ){
+			this.setState({error: true});
+		}else{
+			console.log("Validation success");
+		}
 	}
  	render(){
  		return (
@@ -56,6 +64,9 @@ class TopicCreate extends Component {
 				        	Content:
 				        </label>
 				        <textarea value={this.state.content} onChange={this.handleContentChange}/>
+				        { this.state.error && 
+				        	<span className="App-error-msg">The content may not be greater than 255 characters</span>
+				        }
 				        <input type="submit" value="Submit"/>
 			        </div>
  				</form>

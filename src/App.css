@@ -29,3 +29,6 @@
 .App-form-group *{
 	margin: 5px 0;
 }
+.App-error-msg{
+	color: red;
+}
