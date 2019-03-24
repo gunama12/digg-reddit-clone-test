@@ -10,6 +10,9 @@ class Home extends Component {
 	    this.props.onVote(vote, index);
 	}
 	render(){
+		this.props.topics.sort(function (a, b) {
+			return b.vote - a.vote;
+		});
 		return (
 			<div>
 				<h3>Topic List</h3>
