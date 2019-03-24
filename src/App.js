@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 
 class Home extends Component {
 	constructor(props){
@@ -56,6 +57,7 @@ class TopicCreate extends Component {
 			this.setState({error: true});
 		}else{
 			this.props.onSuccess(this.state.content);
+			this.props.history.push('/');
 		}
 	}
  	render(){
@@ -177,14 +179,35 @@ class App extends Component {
 	}
   	render() {
 		return (
+
+      <BrowserRouter>
 	  		<div className="App">
 	  			<header className="App-header">
 	  				<h1>Digg/Reddit Clone</h1>
-	  				<nav></nav>
+	  				<nav>
+			            <li><Link to='/'>Home</Link></li>
+			            <li><Link to='/create'>Create Topic</Link></li>           
+			        </nav>
 	  			</header>
-	  			<Home topics={this.state.topics} onVote={this.handleVote}/>
-	  			<TopicCreate onSuccess={this.handleCreateTopicSuccess}/>
+	  			<main>
+	  				<Switch>
+	  					<Route 
+	  						path="/" 
+	  						exact 
+	  						component={() => <Home topics={this.state.topics} onVote={this.handleVote}/>}
+	  					/>
+						<Route 
+							path="/create" 
+							exact 
+							render={({ history }) => (
+								<TopicCreate onSuccess={this.handleCreateTopicSuccess} history={history}/>
+							)}
+						/>
+			  		</Switch>
+	  			</main>
 		  	</div>
+
+      </BrowserRouter>
 		);
   	}
 }
