@@ -13,11 +13,12 @@ class Home extends Component {
 		this.props.topics.sort(function (a, b) {
 			return b.vote - a.vote;
 		});
+		let slicedTopics = this.props.topics.slice(0, 20);
 		return (
 			<div>
 				<h3>Topic List</h3>
 				{
-					this.props.topics.map((item,index) => 						
+					slicedTopics.map((item,index) => 						
 						<div className="App-topic" key={index}>
 							<div className="App-vote-box">
 								<a href="#" onClick={(e) => this.handleVote(e, "up", index)}>▲</a>
