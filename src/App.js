@@ -85,12 +85,76 @@ class App extends Component {
 		this.state = {
 			topics: [
 				{
-					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",
-					vote: 0
+					content: "Topic 1",
+					vote: 20
 				},
 				{
-					content: "in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
+					content: "Topic 2",
+					vote: 19
+				},
+				{
+					content: "Topic 3",
+					vote: 18
+				},
+				{
+					content: "Topic 4",
+					vote: 17
+				},
+				{
+					content: "Topic 5",
+					vote: 16
+				},
+				{
+					content: "Topic 6",
+					vote: 15
+				},
+				{
+					content: "Topic 7",
+					vote: 14
+				},
+				{
+					content: "Topic 8",
+					vote: 13
+				},
+				{
+					content: "Topic 9",
+					vote: 12
+				},
+				{
+					content: "Topic 10",
+					vote: 11
+				},
+				{
+					content: "Topic 11",
+					vote: 10
+				},
+				{
+					content: "Topic 12",
+					vote: 9
+				},
+				{
+					content: "Topic 13",
+					vote: 8
+				},
+				{
+					content: "Topic 14",
+					vote: 7
+				},
+				{
+					content: "Topic 15",
+					vote: 6
+				},
+				{
+					content: "Topic 16",
 					vote: 5
+				},
+				{
+					content: "Topic 17",
+					vote: 5
+				},
+				{
+					content: "Topic 18",
+					vote: 4
 				}
 			]
 		}
