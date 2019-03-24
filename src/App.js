@@ -11,7 +11,7 @@ class Home extends Component {
 	}
 	render(){
 		return (
-			<div className="App-home">
+			<div>
 				<h3>Topic List</h3>
 				{
 					this.props.topics.map((item,index) => 						
@@ -21,7 +21,7 @@ class Home extends Component {
 								<span>{item.vote}</span>
 								<a href="#" onClick={(e) => this.handleVote(e, "down", index)}><span>▼</span></a>
 							</div>	
-							<div className="App-topic-box">
+							<div className="App-content-box">
 								<p>{item.content}</p>
 							</div>
 						</div>
@@ -31,6 +31,38 @@ class Home extends Component {
 		);
 	}
 }
+
+class TopicCreate extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			content: ""
+		}
+	}
+	handleContentChange = (event) => {
+		this.setState({content: event.target.value});
+	}
+	handleSubmit = (event) => {
+	    event.preventDefault();
+	    alert('An essay was submitted: ' + this.state.content);
+	}
+ 	render(){
+ 		return (
+ 			<div>
+				<h3>Create Topic</h3>
+ 				<form onSubmit={this.handleSubmit}>
+ 					<div className="App-form-group">
+	 					<label>
+				        	Content:
+				        </label>
+				        <textarea value={this.state.content} onChange={this.handleContentChange}/>
+				        <input type="submit" value="Submit"/>
+			        </div>
+ 				</form>
+ 			</div>
+ 		)
+ 	}
+ }
 
 class App extends Component {
 	constructor(props){
@@ -57,12 +89,13 @@ class App extends Component {
 	}
   	render() {
 		return (
-	  		<div>
+	  		<div className="App">
 	  			<header className="App-header">
 	  				<h1>Digg/Reddit Clone</h1>
 	  				<nav></nav>
 	  			</header>
 	  			<Home topics={this.state.topics} onVote={this.handleVote}/>
+	  			<TopicCreate/>
 		  	</div>
 		);
   	}

@@ -1,8 +1,8 @@
+.App {
+	padding: 10px 10px; 
+}
 .App-header {  
 	text-align: center;
-}
-.App-home {
-	padding: 10px 10px; 
 }
 .App-topic {
 	border: 1px solid grey;
@@ -19,6 +19,13 @@
 .App-vote-box a{
 	text-decoration: none;
 }
-.App-topic-box{
+.App-content-box{
 	flex:1; 
+}
+.App-form-group{
+	display: flex;
+	flex-direction: column;
+}
+.App-form-group *{
+	margin: 5px 0;
 }
