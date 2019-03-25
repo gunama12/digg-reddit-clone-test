@@ -179,35 +179,33 @@ class App extends Component {
 	}
   	render() {
 		return (
-
-      <BrowserRouter>
-	  		<div className="App">
-	  			<header className="App-header">
-	  				<h1>Digg/Reddit Clone</h1>
-	  				<nav>
-			            <li><Link to='/'>Home</Link></li>
-			            <li><Link to='/create'>Create Topic</Link></li>           
-			        </nav>
-	  			</header>
-	  			<main>
-	  				<Switch>
-	  					<Route 
-	  						path="/" 
-	  						exact 
-	  						component={() => <Home topics={this.state.topics} onVote={this.handleVote}/>}
-	  					/>
-						<Route 
-							path="/create" 
-							exact 
-							render={({ history }) => (
-								<TopicCreate onSuccess={this.handleCreateTopicSuccess} history={history}/>
-							)}
-						/>
-			  		</Switch>
-	  			</main>
-		  	</div>
-
-      </BrowserRouter>
+	     	<BrowserRouter>
+		  		<div className="App">
+		  			<header className="App-header">
+		  				<h1>Digg/Reddit Clone</h1>
+		  				<nav>
+				            <li><Link to='/'>Home</Link></li>
+				            <li><Link to='/create'>Create Topic</Link></li>           
+				        </nav>
+		  			</header>
+		  			<main>
+		  				<Switch>
+		  					<Route 
+		  						path="/" 
+		  						exact 
+		  						component={() => <Home topics={this.state.topics} onVote={this.handleVote}/>}
+		  					/>
+							<Route 
+								path="/create" 
+								exact 
+								render={({ history }) => (
+									<TopicCreate onSuccess={this.handleCreateTopicSuccess} history={history}/>
+								)}
+							/>
+				  		</Switch>
+		  			</main>
+			  	</div>
+	        </BrowserRouter>
 		);
   	}
 }
