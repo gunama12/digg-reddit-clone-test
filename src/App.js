@@ -8,12 +8,16 @@ class Home extends Component {
 	}
 	handleVote(e, vote, index) {
 	    e.preventDefault();
+	  	// call onVote props
 	    this.props.onVote(vote, index);
 	}
 	render(){
+		//sort topics by upvote, descending
 		this.props.topics.sort(function (a, b) {
 			return b.vote - a.vote;
 		});
+
+		//limit topics to 20 items
 		let slicedTopics = this.props.topics.slice(0, 20);
 		return (
 			<div>
@@ -48,15 +52,19 @@ class TopicCreate extends Component {
 	handleContentChange = (event) => {
 		this.setState({content: event.target.value});
 		if(event.target.value.length < 256 && this.state.error === true){
+			//Clear error message if validation passed
 			this.setState({error: false});
 		}
 	}
 	handleSubmit = (event) => {
 	    event.preventDefault();
 	    if(this.state.content.length > 255 ){
+	    	//show error message if validation fail
 			this.setState({error: true});
 		}else{
+			//call onSuccess props if validation success
 			this.props.onSuccess(this.state.content);
+			//redirect to home
 			this.props.history.push('/');
 		}
 	}
@@ -84,6 +92,7 @@ class TopicCreate extends Component {
 class App extends Component {
 	constructor(props){
 		super(props);
+		//initial mock data for topics
 		this.state = {
 			topics: [
 				{
@@ -163,6 +172,7 @@ class App extends Component {
 	}
 	handleVote = (vote, index) => {
 		let topics = this.state.topics;
+		//update topic vote by index
 		topics[index].vote = vote === "up" ? (topics[index].vote + 1) : (topics[index].vote - 1);  
 		this.setState({
 			topics: topics
@@ -173,6 +183,7 @@ class App extends Component {
 			content: content,
 			vote: 0
 		};
+		//push new topic to topic list data
 		this.setState({
 	    	topics: [...this.state.topics, newContent]
 	    });
